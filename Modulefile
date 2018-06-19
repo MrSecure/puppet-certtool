@@ -1,5 +1,5 @@
 name 'millenux-certtool'
-version '1.0.1'
+version '1.1.0'
 license 'BSD'
 summary 'Manage SSL certificates with certtool'
 description 'Manage SSL certificates with certtool'

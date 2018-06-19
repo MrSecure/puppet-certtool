@@ -1,6 +1,6 @@
 {
   "name": "millenux-certtool",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "author": "millenux",
   "summary": "Manage SSL certificates with certtool",
   "license": "BSD",
