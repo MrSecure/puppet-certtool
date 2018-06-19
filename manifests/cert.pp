@@ -108,6 +108,12 @@
 #   If the to true the resulting certificate will be self-signed. CA certifcates
 #   (if $is_ca = true) are always self-signed. Default false.
 #
+# [*key_content*]
+#   If a string is passed in, the contents will be used for the key for the
+#   certificate, rather than automatically generating a new key.  This allows
+#   for storing keys and certificates externally.
+#   Default: undef
+#
 # === Author
 #
 # Michael Gruener <michael.gruener@chaosmoon.net>
@@ -176,7 +182,7 @@ define certtool::cert (
       mode    => '0600',
       owner   => 'root',
       group   => 'root',
-      content => $key_content,
+      content => Sensitive($key_content),
     }
   } else {
     file { $keyfile:
