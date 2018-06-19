@@ -185,7 +185,6 @@ define certtool::cert (
       group   => 'root',
       content => Sensitive($key_content),
     }
-    ~> warning("Installing pre-generated key for ${title}.")
   } else {
     file { $keyfile:
       ensure  => file,
