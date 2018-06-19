@@ -145,6 +145,7 @@ define certtool::cert (
   $extract_pubkey = false,
   $combine_keycert = false,
   $self_signed = false,
+  $replace_existing_key = true,
 ) {
   if !defined(Class[$module_name]) {
     fail("Class ${module_name} not defined, please include it in your manifest.")
@@ -174,6 +175,7 @@ define certtool::cert (
     mode    => '0600',
     owner   => root,
     group   => root,
+    replace => $replace_existing_key,
     require => Exec["certtool-key-${title}"]
   }
 
