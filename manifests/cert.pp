@@ -111,7 +111,8 @@
 # [*key_content*]
 #   If a string is passed in, the contents will be used for the key for the
 #   certificate, rather than automatically generating a new key.  This allows
-#   for storing keys and certificates externally.
+#   for storing keys and certificates externally. Certificates can be handled
+#   as a file resource in the external manifest.
 #   Default: undef
 #
 # === Author
@@ -184,7 +185,9 @@ define certtool::cert (
       group   => 'root',
       content => Sensitive($key_content),
     }
-    ~> notify { "Installing pre-generated key for ${title}.": }
+    notify { "Installing pre-generated key for ${title}.":
+      subscribe => File[$key_content],
+    }
   } else {
     file { $keyfile:
       ensure  => file,
