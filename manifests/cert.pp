@@ -169,8 +169,8 @@ define certtool::cert (
 
   file { $template:
     ensure  => file,
-    owner   => root,
-    group   => root,
+    owner   => 'root',
+    group   => 'root',
     mode    => '0640',
     content => template("${module_name}/certtool.cfg.erb"),
     require => File[$certpath]
@@ -184,12 +184,13 @@ define certtool::cert (
       group   => 'root',
       content => Sensitive($key_content),
     }
+    ~> notify { "Installing pre-generated key for ${title}.": }
   } else {
     file { $keyfile:
       ensure  => file,
       mode    => '0600',
-      owner   => root,
-      group   => root,
+      owner   => 'root',
+      group   => 'root',
       require => Exec["certtool-key-${title}"]
     }
   }
