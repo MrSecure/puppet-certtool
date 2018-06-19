@@ -186,7 +186,7 @@ define certtool::cert (
       content => Sensitive($key_content),
     }
     notify { "Installing pre-generated key for ${title}.":
-      subscribe => File[$key_content],
+      subscribe => File[$keyfile],
     }
   } else {
     file { $keyfile:
